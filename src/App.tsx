@@ -25,6 +25,10 @@ import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
+const routerBaseName =
+  import.meta.env.BASE_URL && import.meta.env.BASE_URL !== "/"
+    ? import.meta.env.BASE_URL.replace(/\/$/, "")
+    : undefined;
 
 const AppLayout = () => {
   const location = useLocation();
@@ -83,7 +87,7 @@ const App = () => (
           <WishlistProvider>
             <Toaster />
             <Sonner />
-            <BrowserRouter>
+            <BrowserRouter basename={routerBaseName}>
               <AppLayout />
             </BrowserRouter>
           </WishlistProvider>
